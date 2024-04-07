@@ -62,9 +62,18 @@ export const Description = ({ className, ...props }: DescriptionProps) => (
   />
 );
 
-type ItemControl = React.ComponentProps<typeof Combobox.Root>;
+type ItemControl = Omit<React.ComponentProps<typeof Combobox.Root>,
+  'openOnClick' | 'closeOnSelect' | 'allowCustomValue' | 'present' | 'selectionBehavior' | 'inputBehavior'
+>
 export const ItemControl = ({ className, ...props }: ItemControl) => (
-  <Combobox.Root {...props} className={clsx("select-panel-item-control", className)} />
+  <Combobox.Root {...props} className={clsx("select-panel-item-control", className)}
+    openOnClick
+    closeOnSelect={false}
+    allowCustomValue
+    present
+    selectionBehavior='preserve'
+    inputBehavior='autohighlight'
+  />
 )
 
 type InputControlProps = React.ComponentProps<typeof Combobox.Control>;
