@@ -1,4 +1,6 @@
+import { GearIcon } from "@primer/octicons-react";
 import { useState } from "react";
+import "./app.css";
 import { SelectPanel } from "./select-panel/index.js";
 
 const fruits = [
@@ -21,11 +23,14 @@ const fruits = [
 
 function App() {
   const [items, setItems] = useState(fruits);
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
   return (
-    <div>
+    <div className="container">
       <SelectPanel.Root>
         <SelectPanel.Trigger>
-          <button type="button">Open</button>
+          <button type="button" className="trigger-button">
+            <GearIcon />
+          </button>
         </SelectPanel.Trigger>
         <SelectPanel.Content>
           <SelectPanel.ItemControl
@@ -42,7 +47,11 @@ function App() {
                 setItems(fruits);
               }
             }}
+            onValueChange={({ value }) => void setSelectedValues(value)}
+            value={selectedValues}
             multiple
+            name="fruits"
+            form="form"
           >
             <SelectPanel.Header>
               <SelectPanel.Title>Select an item</SelectPanel.Title>
@@ -67,6 +76,16 @@ function App() {
           </SelectPanel.ItemControl>
         </SelectPanel.Content>
       </SelectPanel.Root>
+      <button
+        type="button"
+        className="submit-button"
+        onClick={() => {
+          alert(selectedValues.join(", "));
+        }}
+        disabled={selectedValues.length === 0}
+      >
+        Submit
+      </button>
     </div>
   );
 }

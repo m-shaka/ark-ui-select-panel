@@ -17,8 +17,6 @@ export const Root = ({ positioning, ...props }: RootProps) => {
   return (
     <Popover.Root
       {...props}
-      unmountOnExit
-      lazyMount
       positioning={positioning ?? { placement: "bottom-start" }}
     />
   );
