@@ -56,3 +56,16 @@
     width: 100%;
     padding: 0px 12px;
 }
+
+.select-panel-separator {
+    background-color: var(--border-color);
+    height: 1px;
+    width: 100%;
+    border: none;
+}
+
+.select-panel-item-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow-y: scroll;
+}

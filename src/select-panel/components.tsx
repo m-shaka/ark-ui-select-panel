@@ -80,3 +80,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     );
   }
 )
+
+export const Separator = (props: React.ComponentProps<"div">) => (
+  <div {...props} className='select-panel-separator' />
+)
+
+type ItemListProps = React.ComponentProps<typeof Combobox.Content>;
+
+export const ItemList = ({ className, ...props }: ItemListProps) => (
+  <Combobox.Content {...props} className={clsx("select-panel-item-list", className)} />
+)

@@ -19,6 +19,10 @@ function App() {
               <SelectPanel.Input />
             </SelectPanel.InputControl>
           </SelectPanel.Header>
+          <SelectPanel.Separator />
+          <SelectPanel.ItemList>
+            hoge
+          </SelectPanel.ItemList>
         </SelectPanel.Content>
       </SelectPanel.Root>
     </div>
