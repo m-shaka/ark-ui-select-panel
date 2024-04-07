@@ -1,7 +1,12 @@
-import { Combobox, Popover, usePopoverContext } from "@ark-ui/react";
+import {
+  Combobox,
+  Popover,
+  useComboboxContext,
+  usePopoverContext,
+} from "@ark-ui/react";
 import { CheckIcon } from "@primer/octicons-react";
 import { clsx } from "clsx";
-import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import { forwardRef } from "react";
 import "./select-panel.css";
 
 type RootProps = Omit<
@@ -84,28 +89,26 @@ export const InputControl = (props: InputControlProps) => (
 
 type InputProps = React.ComponentProps<typeof Combobox.Input>;
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { className, onKeyDown, ...props },
+  { className, onKeyDown, onFocus, ...props },
   ref,
 ) {
-  const localRef = useRef<HTMLInputElement>(null);
-  useEffect(() => {
-    if (localRef.current) {
-      localRef.current.click();
-      localRef.current.value = "";
-    }
-  }, []);
-  useImperativeHandle(ref, () => localRef.current as HTMLInputElement);
-  const popoverContext = usePopoverContext()
+  const comboboxContext = useComboboxContext();
+  const popoverContext = usePopoverContext();
 
   return (
     <Combobox.Input
       {...props}
-      ref={localRef}
+      ref={ref}
       onKeyDown={(event) => {
         if (event.key === "Escape") {
-          popoverContext.close()
+          popoverContext.close();
         }
         onKeyDown?.(event);
+      }}
+      onFocus={(event) => {
+        comboboxContext.open();
+        event.target.value = "";
+        onFocus?.(event);
       }}
       className={clsx("select-panel-input", className)}
     />
