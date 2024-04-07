@@ -1,6 +1,5 @@
 .select-panel-content {
     display: flex;
-    flex-direction: column;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -12,6 +11,13 @@
     --border: 1px solid var(--border-color);
     --hover-color: #f5f5f5;
 }
+
+.select-panel-combobox-root {
+    overflow-y: scroll;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
 
 .select-panel-header {
     display: grid;
@@ -32,12 +38,6 @@
 .select-panel-description {
     font-size: 12px;
     color: #666;
-}
-
-.select-panel-item-control {
-    overflow-y: scroll;
-    display: grid;
-    grid-template-columns: 1fr;
 }
 
 .select-panel-input-control {

@@ -28,14 +28,31 @@ export const Trigger = ({ children }: { children: React.ReactNode }) => (
   <Popover.Trigger asChild>{children}</Popover.Trigger>
 );
 
-type ContentProps = React.ComponentProps<typeof Popover.Content>;
+type ContentProps = Omit<
+  React.ComponentProps<typeof Combobox.Root>,
+  | "openOnClick"
+  | "closeOnSelect"
+  | "allowCustomValue"
+  | "present"
+  | "selectionBehavior"
+  | "inputBehavior"
+>;
+
 export const Content = ({ className, ...props }: ContentProps) => {
   return (
     <Popover.Positioner>
-      <Popover.Content
-        {...props}
-        className={clsx("select-panel-content", className)}
-      />
+      <Popover.Content className="select-panel-content">
+        <Combobox.Root
+          {...props}
+          className={clsx("select-panel-combobox-root", className)}
+          openOnClick
+          closeOnSelect={false}
+          allowCustomValue
+          present
+          selectionBehavior="preserve"
+          inputBehavior="autohighlight"
+        />
+      </Popover.Content>
     </Popover.Positioner>
   );
 };
@@ -57,28 +74,6 @@ export const Description = ({ className, ...props }: DescriptionProps) => (
   <Popover.Description
     {...props}
     className={clsx("select-panel-description", className)}
-  />
-);
-
-type ItemControl = Omit<
-  React.ComponentProps<typeof Combobox.Root>,
-  | "openOnClick"
-  | "closeOnSelect"
-  | "allowCustomValue"
-  | "present"
-  | "selectionBehavior"
-  | "inputBehavior"
->;
-export const ItemControl = ({ className, ...props }: ItemControl) => (
-  <Combobox.Root
-    {...props}
-    className={clsx("select-panel-item-control", className)}
-    openOnClick
-    closeOnSelect={false}
-    allowCustomValue
-    present
-    selectionBehavior="preserve"
-    inputBehavior="autohighlight"
   />
 );
 

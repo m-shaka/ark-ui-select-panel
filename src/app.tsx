@@ -27,7 +27,22 @@ function App() {
         <SelectPanel.Trigger>
           <button type="button">Open</button>
         </SelectPanel.Trigger>
-        <SelectPanel.Content>
+        <SelectPanel.Content
+          items={items}
+          onInputValueChange={({ value }) => {
+            setItems(
+              fruits.filter((fruit) =>
+                fruit.toLowerCase().includes(value.toLowerCase()),
+              ),
+            );
+          }}
+          onOpenChange={({ open }) => {
+            if (!open) {
+              setItems(fruits);
+            }
+          }}
+          multiple
+        >
           <SelectPanel.Header>
             <SelectPanel.Title>Select an item</SelectPanel.Title>
             <SelectPanel.Description>
@@ -35,35 +50,18 @@ function App() {
               description
             </SelectPanel.Description>
           </SelectPanel.Header>
-          <SelectPanel.ItemControl
-            items={items}
-            onInputValueChange={({ value }) => {
-              setItems(
-                fruits.filter((fruit) =>
-                  fruit.toLowerCase().includes(value.toLowerCase()),
-                ),
-              );
-            }}
-            onOpenChange={({ open }) => {
-              if (!open) {
-                setItems(fruits);
-              }
-            }}
-            multiple
-          >
-            <SelectPanel.InputControl>
-              <SelectPanel.Input />
-            </SelectPanel.InputControl>
-            <SelectPanel.Separator />
-            <SelectPanel.ItemList>
-              {items.map((fruit) => (
-                <SelectPanel.Item key={fruit} item={fruit}>
-                  <SelectPanel.ItemIndicator />
-                  <SelectPanel.ItemText>{fruit}</SelectPanel.ItemText>
-                </SelectPanel.Item>
-              ))}
-            </SelectPanel.ItemList>
-          </SelectPanel.ItemControl>
+          <SelectPanel.InputControl>
+            <SelectPanel.Input />
+          </SelectPanel.InputControl>
+          <SelectPanel.Separator />
+          <SelectPanel.ItemList>
+            {items.map((fruit) => (
+              <SelectPanel.Item key={fruit} item={fruit}>
+                <SelectPanel.ItemIndicator />
+                <SelectPanel.ItemText>{fruit}</SelectPanel.ItemText>
+              </SelectPanel.Item>
+            ))}
+          </SelectPanel.ItemList>
         </SelectPanel.Content>
       </SelectPanel.Root>
     </div>
