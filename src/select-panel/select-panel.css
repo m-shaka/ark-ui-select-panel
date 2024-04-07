@@ -12,7 +12,7 @@
     --hover-color: #f5f5f5;
 }
 
-.select-panel-combobox-root {
+.select-panel-item-control {
     overflow-y: scroll;
     display: grid;
     grid-template-columns: 1fr;
@@ -21,6 +21,7 @@
 
 .select-panel-header {
     display: grid;
+    grid-template-columns: 1fr auto;
     height: fit-content;
     row-gap: 8px;
     padding: 8px var(--padding-x);
@@ -31,11 +32,17 @@
     font-weight: 600;
 }
 
+.select-panel-close {
+    display: inline-flex;
+    height: fit-content;
+}
+
 .select-panel-close:hover {
     background-color: var(--hover-color);
 }
 
 .select-panel-description {
+    grid-column: 1 / -1;
     font-size: 12px;
     color: #666;
 }
