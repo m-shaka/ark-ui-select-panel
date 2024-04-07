@@ -65,17 +65,18 @@ export const Description = ({ className, ...props }: DescriptionProps) => (
   />
 );
 
+type InputControlProps = React.ComponentProps<typeof Combobox.Control>;
+export const InputControl = (props: InputControlProps) => <Combobox.Control className='select-panel-input-control' {...props} />
+
 type InputProps = React.ComponentProps<typeof Combobox.Input>;
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   function Input({ className, ...props }, ref) {
     return (
-      <Combobox.Control className='select-panel-input-control'>
-        <Combobox.Input
-          {...props}
-          ref={ref}
-          className={clsx("select-panel-input", className)}
-        />
-      </Combobox.Control>
+      <Combobox.Input
+        {...props}
+        ref={ref}
+        className={clsx("select-panel-input", className)}
+      />
     );
   }
 )

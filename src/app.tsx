@@ -15,7 +15,9 @@ function App() {
               This is a description. This is a description. This is a
               description
             </SelectPanel.Description>
-            <SelectPanel.Input />
+            <SelectPanel.InputControl>
+              <SelectPanel.Input />
+            </SelectPanel.InputControl>
           </SelectPanel.Header>
         </SelectPanel.Content>
       </SelectPanel.Root>
