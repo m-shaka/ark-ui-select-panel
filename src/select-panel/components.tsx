@@ -1,4 +1,4 @@
-import { Popover } from "@ark-ui/react";
+import { Combobox, Popover } from "@ark-ui/react";
 import { XIcon } from "@primer/octicons-react";
 import { clsx } from "clsx";
 import "./select-panel.css";
@@ -22,15 +22,14 @@ export const Trigger = ({ children }: { children: React.ReactNode }) => (
   <Popover.Trigger asChild>{children}</Popover.Trigger>
 );
 
-type ContentProps = React.ComponentProps<typeof Popover.Content>;
+type ContentProps = React.ComponentProps<typeof Combobox.Root>;
 
 export const Content = ({ className, ...props }: ContentProps) => {
   return (
     <Popover.Positioner>
-      <Popover.Content
-        {...props}
-        className={clsx("select-panel-content", className)}
-      />
+      <Popover.Content className={clsx("select-panel-content", className)}>
+        <Combobox.Root {...props} />
+      </Popover.Content>
     </Popover.Positioner>
   );
 };

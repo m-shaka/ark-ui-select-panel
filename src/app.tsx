@@ -7,7 +7,7 @@ function App() {
         <SelectPanel.Trigger>
           <button type="button">Open</button>
         </SelectPanel.Trigger>
-        <SelectPanel.Content>
+        <SelectPanel.Content items={[]}>
           <SelectPanel.Header>
             <SelectPanel.Title>Select an item</SelectPanel.Title>
             <SelectPanel.Close />
