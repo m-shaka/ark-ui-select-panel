@@ -1,7 +1,7 @@
 import { Combobox, Popover } from "@ark-ui/react";
 import { CheckIcon, XIcon } from "@primer/octicons-react";
 import { clsx } from "clsx";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import "./select-panel.css";
 
 type RootProps = Omit<
@@ -49,6 +49,9 @@ export const Close = ({ className, ...props }: CloseProps) => (
   <Popover.CloseTrigger
     className={clsx("select-panel-close", className)}
     {...props}
+    onFocus={() => {
+      document.querySelector('.select-panel-input')?.focus()
+    }}
   >
     <XIcon size={16} />
   </Popover.CloseTrigger>
@@ -82,10 +85,18 @@ export const InputControl = (props: InputControlProps) => <Combobox.Control clas
 type InputProps = React.ComponentProps<typeof Combobox.Input>;
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   function Input({ className, ...props }, ref) {
+    const localRef = useRef<HTMLInputElement>(null);
+    useEffect(() => {
+      if (localRef.current) {
+        localRef.current.click();
+        localRef.current.value = '';
+      }
+    }, []);
+    useImperativeHandle(ref, () => localRef.current as HTMLInputElement)
     return (
       <Combobox.Input
         {...props}
-        ref={ref}
+        ref={localRef}
         className={clsx("select-panel-input", className)}
       />
     );
