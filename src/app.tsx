@@ -23,9 +23,13 @@ const fruits = [
 
 function App() {
   const [items, setItems] = useState(fruits);
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
   return (
-    <div className="container">
+    <form className="container" onSubmit={(event) => {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+      const selectedValues = formData.getAll("fruits");
+      alert(selectedValues);
+    }}>
       <SelectPanel.Root>
         <SelectPanel.Trigger>
           <button type="button" className="trigger-button">
@@ -47,11 +51,8 @@ function App() {
                 setItems(fruits);
               }
             }}
-            onValueChange={({ value }) => void setSelectedValues(value)}
-            value={selectedValues}
             multiple
             name="fruits"
-            form="form"
           >
             <SelectPanel.Header>
               <SelectPanel.Title>Select an item</SelectPanel.Title>
@@ -77,16 +78,12 @@ function App() {
         </SelectPanel.Content>
       </SelectPanel.Root>
       <button
-        type="button"
+        type="submit"
         className="submit-button"
-        onClick={() => {
-          alert(selectedValues.join(", "));
-        }}
-        disabled={selectedValues.length === 0}
       >
         Submit
       </button>
-    </div>
+    </form>
   );
 }
 

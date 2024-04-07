@@ -105,31 +105,41 @@ export const InputControl = (props: InputControlProps) => (
   <Combobox.Control className="select-panel-input-control" {...props} />
 );
 
-type InputProps = React.ComponentProps<typeof Combobox.Input>;
+type InputProps = Omit<React.ComponentProps<typeof Combobox.Input>, 'name'>;
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   { className, onKeyDown, onFocus, ...props },
   ref,
 ) {
   const comboboxContext = useComboboxContext();
   const popoverContext = usePopoverContext();
-
   return (
-    <Combobox.Input
-      {...props}
-      ref={ref}
-      onKeyDown={(event) => {
-        if (event.key === "Escape") {
-          popoverContext.close();
-        }
-        onKeyDown?.(event);
-      }}
-      onFocus={(event) => {
-        comboboxContext.open();
-        event.target.value = "";
-        onFocus?.(event);
-      }}
-      className={clsx("select-panel-input", className)}
-    />
+    <>
+      <Combobox.Input
+        {...props}
+        ref={ref}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") {
+            popoverContext.close();
+          }
+          onKeyDown?.(event);
+        }}
+        onFocus={(event) => {
+          comboboxContext.open();
+          event.target.value = "";
+          onFocus?.(event);
+        }}
+        name={''}
+        className={clsx("select-panel-input", className)}
+      />
+      {
+        comboboxContext.value.map((value) => {
+          return (
+            <input key={value} name={comboboxContext.inputProps.name} form={comboboxContext.inputProps.form} value={value} type='hidden' />
+          )
+
+        })
+      }
+    </>
   );
 });
 
