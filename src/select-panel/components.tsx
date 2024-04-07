@@ -1,5 +1,5 @@
 import { Combobox, Popover } from "@ark-ui/react";
-import { CheckIcon, XIcon } from "@primer/octicons-react";
+import { CheckIcon } from "@primer/octicons-react";
 import { clsx } from "clsx";
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import "./select-panel.css";
@@ -42,19 +42,6 @@ export const Header = ({
 type TitleProps = React.ComponentProps<typeof Popover.Title>;
 export const Title = ({ className, ...props }: TitleProps) => (
   <Popover.Title {...props} className={clsx("select-panel-title", className)} />
-);
-
-type CloseProps = React.ComponentProps<typeof Popover.CloseTrigger>;
-export const Close = ({ className, ...props }: CloseProps) => (
-  <Popover.CloseTrigger
-    className={clsx("select-panel-close", className)}
-    {...props}
-    onFocus={() => {
-      document.querySelector('.select-panel-input')?.focus()
-    }}
-  >
-    <XIcon size={16} />
-  </Popover.CloseTrigger>
 );
 
 type DescriptionProps = React.ComponentProps<typeof Popover.Description>;

@@ -29,7 +29,6 @@ function App() {
         <SelectPanel.Content>
           <SelectPanel.Header>
             <SelectPanel.Title>Select an item</SelectPanel.Title>
-            <SelectPanel.Close />
             <SelectPanel.Description>
               This is a description. This is a description. This is a
               description
