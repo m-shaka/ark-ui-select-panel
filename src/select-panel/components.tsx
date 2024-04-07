@@ -1,6 +1,7 @@
 import { Combobox, Popover } from "@ark-ui/react";
 import { XIcon } from "@primer/octicons-react";
 import { clsx } from "clsx";
+import { forwardRef } from "react";
 import "./select-panel.css";
 
 type RootProps = Omit<
@@ -63,3 +64,18 @@ export const Description = ({ className, ...props }: DescriptionProps) => (
     className={clsx("select-panel-description", className)}
   />
 );
+
+type InputProps = React.ComponentProps<typeof Combobox.Input>;
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  function Input({ className, ...props }, ref) {
+    return (
+      <Combobox.Control className='select-panel-input-control'>
+        <Combobox.Input
+          {...props}
+          ref={ref}
+          className={clsx("select-panel-input", className)}
+        />
+      </Combobox.Control>
+    );
+  }
+)
