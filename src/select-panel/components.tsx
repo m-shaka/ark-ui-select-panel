@@ -27,7 +27,10 @@ type ContentProps = React.ComponentProps<typeof Popover.Content>;
 export const Content = ({ className, ...props }: ContentProps) => {
   return (
     <Popover.Positioner>
-      <Popover.Content {...props} className={clsx("select-panel-content", className)} />
+      <Popover.Content
+        {...props}
+        className={clsx("select-panel-content", className)}
+      />
     </Popover.Positioner>
   );
 };
@@ -52,68 +55,91 @@ export const Description = ({ className, ...props }: DescriptionProps) => (
   />
 );
 
-type ItemControl = Omit<React.ComponentProps<typeof Combobox.Root>,
-  'openOnClick' | 'closeOnSelect' | 'allowCustomValue' | 'present' | 'selectionBehavior' | 'inputBehavior'
->
+type ItemControl = Omit<
+  React.ComponentProps<typeof Combobox.Root>,
+  | "openOnClick"
+  | "closeOnSelect"
+  | "allowCustomValue"
+  | "present"
+  | "selectionBehavior"
+  | "inputBehavior"
+>;
 export const ItemControl = ({ className, ...props }: ItemControl) => (
-  <Combobox.Root {...props} className={clsx("select-panel-item-control", className)}
+  <Combobox.Root
+    {...props}
+    className={clsx("select-panel-item-control", className)}
     openOnClick
     closeOnSelect={false}
     allowCustomValue
     present
-    selectionBehavior='preserve'
-    inputBehavior='autohighlight'
+    selectionBehavior="preserve"
+    inputBehavior="autohighlight"
   />
-)
+);
 
 type InputControlProps = React.ComponentProps<typeof Combobox.Control>;
-export const InputControl = (props: InputControlProps) => <Combobox.Control className='select-panel-input-control' {...props} />
+export const InputControl = (props: InputControlProps) => (
+  <Combobox.Control className="select-panel-input-control" {...props} />
+);
 
 type InputProps = React.ComponentProps<typeof Combobox.Input>;
-export const Input = forwardRef<HTMLInputElement, InputProps>(
-  function Input({ className, ...props }, ref) {
-    const localRef = useRef<HTMLInputElement>(null);
-    useEffect(() => {
-      if (localRef.current) {
-        localRef.current.click();
-        localRef.current.value = '';
-      }
-    }, []);
-    useImperativeHandle(ref, () => localRef.current as HTMLInputElement)
-    return (
-      <Combobox.Input
-        {...props}
-        ref={localRef}
-        className={clsx("select-panel-input", className)}
-      />
-    );
-  }
-)
+export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { className, ...props },
+  ref,
+) {
+  const localRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    if (localRef.current) {
+      localRef.current.click();
+      localRef.current.value = "";
+    }
+  }, []);
+  useImperativeHandle(ref, () => localRef.current as HTMLInputElement);
+  return (
+    <Combobox.Input
+      {...props}
+      ref={localRef}
+      className={clsx("select-panel-input", className)}
+    />
+  );
+});
 
 export const Separator = (props: React.ComponentProps<"div">) => (
-  <div {...props} className='select-panel-separator' />
-)
+  <div {...props} className="select-panel-separator" />
+);
 
 type ItemListProps = React.ComponentProps<typeof Combobox.Content>;
 
 export const ItemList = ({ className, ...props }: ItemListProps) => (
-  <Combobox.Content {...props} className={clsx("select-panel-item-list", className)} />
-)
+  <Combobox.Content
+    {...props}
+    className={clsx("select-panel-item-list", className)}
+  />
+);
 
-type ItemProps = React.ComponentProps<typeof Combobox.Item>
+type ItemProps = React.ComponentProps<typeof Combobox.Item>;
 export const Item = ({ className, ...props }: ItemProps) => (
   <Combobox.Item {...props} className={clsx("select-panel-item", className)} />
-)
+);
 
-type ItemIndicatorProps = Omit<React.ComponentProps<typeof Combobox.ItemIndicator>, 'children' | 'asChild'>
+type ItemIndicatorProps = Omit<
+  React.ComponentProps<typeof Combobox.ItemIndicator>,
+  "children" | "asChild"
+>;
 export const ItemIndicator = ({ className, ...props }: ItemIndicatorProps) => (
-  <Combobox.ItemIndicator {...props} className={clsx("select-panel-item-indicator", className)}>
+  <Combobox.ItemIndicator
+    {...props}
+    className={clsx("select-panel-item-indicator", className)}
+  >
     <CheckIcon size={16} />
   </Combobox.ItemIndicator>
-)
+);
 
-type ItemTextProps = React.ComponentProps<typeof Combobox.ItemText>
+type ItemTextProps = React.ComponentProps<typeof Combobox.ItemText>;
 
 export const ItemText = ({ className, ...props }: ItemTextProps) => (
-  <Combobox.ItemText {...props} className={clsx("select-panel-item-text", className)} />
-)
+  <Combobox.ItemText
+    {...props}
+    className={clsx("select-panel-item-text", className)}
+  />
+);

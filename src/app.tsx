@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { SelectPanel } from "./select-panel/index.js";
 
 const fruits = [
@@ -15,11 +16,11 @@ const fruits = [
   "Nectarine",
   "Orange",
   "Papaya",
-  "Quince"
+  "Quince",
 ];
 
-
 function App() {
+  const [items, setItems] = useState(fruits);
   return (
     <div>
       <SelectPanel.Root>
@@ -34,13 +35,28 @@ function App() {
               description
             </SelectPanel.Description>
           </SelectPanel.Header>
-          <SelectPanel.ItemControl items={fruits}>
+          <SelectPanel.ItemControl
+            items={items}
+            onInputValueChange={({ value }) => {
+              setItems(
+                fruits.filter((fruit) =>
+                  fruit.toLowerCase().includes(value.toLowerCase()),
+                ),
+              );
+            }}
+            onOpenChange={({ open }) => {
+              if (!open) {
+                setItems(fruits);
+              }
+            }}
+            multiple
+          >
             <SelectPanel.InputControl>
               <SelectPanel.Input />
             </SelectPanel.InputControl>
             <SelectPanel.Separator />
             <SelectPanel.ItemList>
-              {fruits.map(fruit => (
+              {items.map((fruit) => (
                 <SelectPanel.Item key={fruit} item={fruit}>
                   <SelectPanel.ItemIndicator />
                   <SelectPanel.ItemText>{fruit}</SelectPanel.ItemText>

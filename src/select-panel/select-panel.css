@@ -1,12 +1,12 @@
 .select-panel-content {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 240px;
     min-height: 80px;
-    height: 360px;
+    max-height: 360px;
     --padding-x: 12px;
     --border-color: #e0e0e0;
     --border: 1px solid var(--border-color);
@@ -17,7 +17,7 @@
     display: grid;
     height: fit-content;
     row-gap: 8px;
-    padding: var(--padding-x);
+    padding: 8px var(--padding-x);
 }
 
 .select-panel-title {
@@ -41,8 +41,7 @@
 }
 
 .select-panel-input-control {
-    grid-column: 1 / -1;
-    padding: var(--padding-x);
+    padding: 8px var(--padding-x);
 }
 
 .select-panel-input {
@@ -73,6 +72,7 @@
     display: grid;
     align-items: center;
     grid-template-columns: 20px 1fr;
+    cursor: pointer;
 }
 
 .select-panel-item[data-highlighted] {
