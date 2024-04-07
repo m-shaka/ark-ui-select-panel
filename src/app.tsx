@@ -1,5 +1,24 @@
 import { SelectPanel } from "./select-panel/index.js";
 
+const fruits = [
+  "Apple",
+  "Banana",
+  "Cherry",
+  "Date",
+  "Elderberry",
+  "Fig",
+  "Grape",
+  "Honeydew",
+  "Kiwi",
+  "Lemon",
+  "Mango",
+  "Nectarine",
+  "Orange",
+  "Papaya",
+  "Quince"
+];
+
+
 function App() {
   return (
     <div>
@@ -7,7 +26,7 @@ function App() {
         <SelectPanel.Trigger>
           <button type="button">Open</button>
         </SelectPanel.Trigger>
-        <SelectPanel.Content items={[]}>
+        <SelectPanel.Content>
           <SelectPanel.Header>
             <SelectPanel.Title>Select an item</SelectPanel.Title>
             <SelectPanel.Close />
@@ -15,14 +34,21 @@ function App() {
               This is a description. This is a description. This is a
               description
             </SelectPanel.Description>
+          </SelectPanel.Header>
+          <SelectPanel.ItemControl items={fruits}>
             <SelectPanel.InputControl>
               <SelectPanel.Input />
             </SelectPanel.InputControl>
-          </SelectPanel.Header>
-          <SelectPanel.Separator />
-          <SelectPanel.ItemList>
-            hoge
-          </SelectPanel.ItemList>
+            <SelectPanel.Separator />
+            <SelectPanel.ItemList>
+              {fruits.map(fruit => (
+                <SelectPanel.Item key={fruit} item={fruit}>
+                  <SelectPanel.ItemIndicator />
+                  <SelectPanel.ItemText>{fruit}</SelectPanel.ItemText>
+                </SelectPanel.Item>
+              ))}
+            </SelectPanel.ItemList>
+          </SelectPanel.ItemControl>
         </SelectPanel.Content>
       </SelectPanel.Root>
     </div>

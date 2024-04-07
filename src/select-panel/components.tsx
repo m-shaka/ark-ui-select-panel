@@ -1,5 +1,5 @@
 import { Combobox, Popover } from "@ark-ui/react";
-import { XIcon } from "@primer/octicons-react";
+import { CheckIcon, XIcon } from "@primer/octicons-react";
 import { clsx } from "clsx";
 import { forwardRef } from "react";
 import "./select-panel.css";
@@ -23,14 +23,11 @@ export const Trigger = ({ children }: { children: React.ReactNode }) => (
   <Popover.Trigger asChild>{children}</Popover.Trigger>
 );
 
-type ContentProps = React.ComponentProps<typeof Combobox.Root>;
-
+type ContentProps = React.ComponentProps<typeof Popover.Content>;
 export const Content = ({ className, ...props }: ContentProps) => {
   return (
     <Popover.Positioner>
-      <Popover.Content className={clsx("select-panel-content", className)}>
-        <Combobox.Root {...props} />
-      </Popover.Content>
+      <Popover.Content {...props} className={clsx("select-panel-content", className)} />
     </Popover.Positioner>
   );
 };
@@ -65,6 +62,11 @@ export const Description = ({ className, ...props }: DescriptionProps) => (
   />
 );
 
+type ItemControl = React.ComponentProps<typeof Combobox.Root>;
+export const ItemControl = ({ className, ...props }: ItemControl) => (
+  <Combobox.Root {...props} className={clsx("select-panel-item-control", className)} />
+)
+
 type InputControlProps = React.ComponentProps<typeof Combobox.Control>;
 export const InputControl = (props: InputControlProps) => <Combobox.Control className='select-panel-input-control' {...props} />
 
@@ -89,4 +91,22 @@ type ItemListProps = React.ComponentProps<typeof Combobox.Content>;
 
 export const ItemList = ({ className, ...props }: ItemListProps) => (
   <Combobox.Content {...props} className={clsx("select-panel-item-list", className)} />
+)
+
+type ItemProps = React.ComponentProps<typeof Combobox.Item>
+export const Item = ({ className, ...props }: ItemProps) => (
+  <Combobox.Item {...props} className={clsx("select-panel-item", className)} />
+)
+
+type ItemIndicatorProps = Omit<React.ComponentProps<typeof Combobox.ItemIndicator>, 'children' | 'asChild'>
+export const ItemIndicator = ({ className, ...props }: ItemIndicatorProps) => (
+  <Combobox.ItemIndicator {...props} className={clsx("select-panel-item-indicator", className)}>
+    <CheckIcon size={16} />
+  </Combobox.ItemIndicator>
+)
+
+type ItemTextProps = React.ComponentProps<typeof Combobox.ItemText>
+
+export const ItemText = ({ className, ...props }: ItemTextProps) => (
+  <Combobox.ItemText {...props} className={clsx("select-panel-item-text", className)} />
 )
