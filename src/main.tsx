@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import 'ress/dist/ress.min.css';
+import "ress/dist/ress.min.css";
 import App from "./app.tsx";
 import "./index.css";
 
