@@ -105,7 +105,7 @@ export const InputControl = (props: InputControlProps) => (
   <Combobox.Control className="select-panel-input-control" {...props} />
 );
 
-type InputProps = Omit<React.ComponentProps<typeof Combobox.Input>, 'name'>;
+type InputProps = Omit<React.ComponentProps<typeof Combobox.Input>, "name">;
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   { className, onKeyDown, onFocus, ...props },
   ref,
@@ -128,17 +128,20 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           event.target.value = "";
           onFocus?.(event);
         }}
-        name={''}
+        name={""}
         className={clsx("select-panel-input", className)}
       />
-      {
-        comboboxContext.value.map((value) => {
-          return (
-            <input key={value} name={comboboxContext.inputProps.name} form={comboboxContext.inputProps.form} value={value} type='hidden' />
-          )
-
-        })
-      }
+      {comboboxContext.value.map((value) => {
+        return (
+          <input
+            key={value}
+            name={comboboxContext.inputProps.name}
+            form={comboboxContext.inputProps.form}
+            value={value}
+            type="hidden"
+          />
+        );
+      })}
     </>
   );
 });

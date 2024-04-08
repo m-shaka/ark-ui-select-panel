@@ -24,12 +24,15 @@ const fruits = [
 function App() {
   const [items, setItems] = useState(fruits);
   return (
-    <form className="container" onSubmit={(event) => {
-      event.preventDefault();
-      const formData = new FormData(event.currentTarget);
-      const selectedValues = formData.getAll("fruits");
-      alert(selectedValues);
-    }}>
+    <form
+      className="container"
+      onSubmit={(event) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const selectedValues = formData.getAll("fruits");
+        alert(selectedValues);
+      }}
+    >
       <SelectPanel.Root>
         <SelectPanel.Trigger>
           <button type="button" className="trigger-button">
@@ -77,10 +80,7 @@ function App() {
           </SelectPanel.ItemControl>
         </SelectPanel.Content>
       </SelectPanel.Root>
-      <button
-        type="submit"
-        className="submit-button"
-      >
+      <button type="submit" className="submit-button">
         Submit
       </button>
     </form>
