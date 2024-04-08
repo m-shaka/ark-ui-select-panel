@@ -78,18 +78,13 @@ type CloseProps = Omit<
   "children" | "asChild"
 >;
 export const Close = forwardRef<HTMLButtonElement, CloseProps>(function Close(
-  { className, onFocus, ...props },
+  { className, ...props },
   ref,
 ) {
-  const comboboxContext = useComboboxContext();
   return (
     <Popover.CloseTrigger
       {...props}
       ref={ref}
-      onFocus={(event) => {
-        comboboxContext.focus();
-        onFocus?.(event);
-      }}
       className={clsx("select-panel-close", className)}
     >
       <XIcon size={16} />

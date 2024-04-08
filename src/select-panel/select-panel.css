@@ -36,10 +36,17 @@
 .select-panel-close {
     display: inline-flex;
     height: fit-content;
-}
+    position: absolute;
+    top: 8px;
+    right: var(--padding-x);
 
-.select-panel-close:hover {
-    background-color: var(--hover-color);
+    &:hover {
+        background-color: var(--hover-color);
+    }
+
+    &:focus {
+        background-color: var(--hover-color);
+    }
 }
 
 .select-panel-description {

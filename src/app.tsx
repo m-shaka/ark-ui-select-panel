@@ -55,7 +55,6 @@ function App() {
           >
             <SelectPanel.Header>
               <SelectPanel.Title>Select an item</SelectPanel.Title>
-              <SelectPanel.Close />
               <SelectPanel.Description>
                 This is a description. This is a description. This is a
                 description
@@ -73,6 +72,7 @@ function App() {
                 </SelectPanel.Item>
               ))}
             </SelectPanel.ItemList>
+            <SelectPanel.Close />
           </SelectPanel.ItemControl>
         </SelectPanel.Content>
       </SelectPanel.Root>
