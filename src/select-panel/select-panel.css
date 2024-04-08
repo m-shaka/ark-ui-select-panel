@@ -10,6 +10,8 @@
     --border-color: #e0e0e0;
     --border: 1px solid var(--border-color);
     --hover-color: #f5f5f5;
+    --header-padding-y: 8px;
+    --close-button-size: 16px;
 }
 
 .select-panel-item-control {
@@ -22,10 +24,11 @@
 
 .select-panel-header {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr var(--close-button-size);
     height: fit-content;
     row-gap: 8px;
-    padding: 8px var(--padding-x);
+    column-gap: 4px;
+    padding: var(--header-padding-y) var(--padding-x);
 }
 
 .select-panel-title {
@@ -37,7 +40,7 @@
     display: inline-flex;
     height: fit-content;
     position: absolute;
-    top: 8px;
+    top: var(--header-padding-y);
     right: var(--padding-x);
 
     &:hover {
