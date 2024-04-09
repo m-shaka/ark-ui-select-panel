@@ -125,7 +125,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       }}
       onFocus={(event) => {
         comboboxContext.open();
-        event.target.value = "";
+        if (event.target.value === "") {
+          event.target.value = "";
+        }
         onFocus?.(event);
       }}
       className={clsx("select-panel-input", className)}
